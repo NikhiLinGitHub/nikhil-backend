@@ -1,0 +1,63 @@
+
+body{
+    background-color: greenyellow;
+    justify-content: center;
+}
+
+#header{
+    height: 100px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: space-between;
+    gap: 8px; border: 4px black solid;
+
+
+}
+
+.box{
+    height: 80px;
+    width: 80px;
+    font-size: 20px;
+    background-color: bisque;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+#logo{
+    height: 80px;
+    width: 80px;
+    overflow: hidden;
+    display: flex;
+    justify-self: flex-start;
+    margin-right: auto;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+#searchbar{
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+button{
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    border: 2px black solid;
+    width: 65px;
+    height: 18px;
+    margin: 0.4rem 0.2rem;
+}
+
+input{
+    justify-content: center;
+    align-items: center;
+    height: 18px;
+    border-radius: 2px;
+    border: 2px black solid;
+    margin: 0.4rem 0;
+}

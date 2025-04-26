@@ -1,0 +1,3 @@
+alt+z - all code in vertical,
+
+ctrl + k + C -commenting out the code, ctrl + k + u - uncommenting
