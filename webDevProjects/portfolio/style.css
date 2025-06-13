@@ -9,18 +9,18 @@
     border: none;
     outline: none;
     font-family: "Poppins", sans-serif;
-    color: w;
+    color: var(--white-color);
 }
 
 :root {    
-    --bg-color: white;
-    --second-bg-color: rgb(240, 215, 215);
-    --main-color: rgb(186, 123, 35);
-    --disabled-color: rgb(63, 42, 42);
-    --white-color: black;
+    --bg-color: #1f242d;
+    --second-bg-color: #373c46;
+    --main-color: #7cf03d;
+    --disabled-color: rgba(255, 255, 255, 0.474);
+    --white-color: #ffffff;
+    
 }
     
-
 
 html {
     font-family: 62.5%;
@@ -28,22 +28,22 @@ html {
 
 body {
     color: var(--white-color);
-    background-color: #1f242d;
+    background-color: var(--second-bg-color);
     transition: background-color 0.3s ease, color ;
 }
 
-.darkmode{
-    --bg-color: #1f242d;
-    --second-bg-color: #373c46;
-    --main-color: #7cf03d;
-    --disabled-color: rgba(255, 255, 255, 0.474);
-    --white-color: #ffffff;
+.lightmode{
+    --bg-color: white;
+    --second-bg-color: rgb(240, 215, 215);
+    --main-color: rgb(186, 123, 35);
+    --disabled-color: rgb(63, 42, 42);
+    --white-color: black;
 }
 
 
 #theme-switch{
-    height: 75px;
-    width: 75px;
+    height: 70px;
+    width: 70px;
     padding: 0;
     border-radius: 50%;
     background-color: var(--white-color);
@@ -63,11 +63,11 @@ body {
     display: none;
 }
 
-.darkmode #theme-switch svg:first-child{
+.lightmode #theme-switch svg:first-child{
     display: none;
 }
 
-.darkmode #theme-switch svg:last-child{
+.lightmode #theme-switch svg:last-child{
     display: block;
 }
 
@@ -82,14 +82,14 @@ header{
     justify-content: space-between;
     align-items: center;
     z-index: 100;
-    visibility: visible;
+    visibility: hidden;
     opacity: 0;
 
 }
 
 
 header.active {
-    animation: show-header linear forwards;
+    animation: show-header 1.5s linear forwards;
 }
 
 @keyframes show-header {
@@ -100,16 +100,22 @@ header.active {
 }
 
 .logo{
-    font-size: 3rem;
+    font-size: 1.4rem;
     color: var(--white-color);
-    font-weight: 700;
+    font-weight: 500;
+    margin-left: 0.5rem;
+}
+
+nav {
+    margin-right: 2rem;
+    margin-left: 2rem;
 }
 
 nav a{
-    font-size: 2rem;
+    font-size: 1.2rem;
     color: var(--white-color);
     font-weight: 500;
-    margin-left: 3.5rem;
+    margin-left: 2.5rem;
 }
 
 nav a:hover, nav a.active {
@@ -122,23 +128,63 @@ nav a:hover, nav a.active {
     
 }
 
+.bars-box {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    
+}
+
+.bars-box .bar {
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+    animation: hide-bars .5s ease-in-out both;
+    animation-delay: calc(.1s * var(--i));
+
+}
+
+@keyframes hide-bars {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+.bars-box.active .bar {
+    animation: show-bars .5s ease-in-out both;
+    animation-delay: calc(.1s * var(--i));
+} 
+
+@keyframes show-bars {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
 section {
     position: absolute;
     width: 100%;
     height: 100%;
     padding: 10rem 9% 2rem;
-    background-color: var(--bg-color);
     visibility: hidden;
     opacity: 0;
     overflow: hidden;
 }
 
 section.active {
-    animation: show-content forwards;
+    animation: show-content 0.5s linear forwards;
+    animation-delay: 1s;
 }
 
 
-@keyframes show-content{
+@keyframes show-content {
     100% {
     visibility: visible;
     opacity: 1;
@@ -785,3 +831,155 @@ section.active {
     border-radius: 8ch;
 }
 
+/*breakpoints */
+
+@media screen and (max-width: 3050px) {
+    html {
+        font-size: 85%;
+    }
+}
+
+@media screen and (max-width: 1250px) {
+    html {
+        font-size: 75%;
+    }
+    #theme-switch {
+        height: 50px;
+        width: 50px;
+    }
+}
+
+@media screen and (max-width: 990px) {
+    header {
+        padding: 2rem 15%;
+    }
+
+    nav {
+        margin-left: 2%;
+    }
+
+    section {
+        padding: 10rem 4% 2rem ;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .contact-box .field-box {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 750px) {
+
+    #theme-switch {
+        height: 38px;
+        width: 38px;
+    }
+
+    nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 1rem 0;
+        background: var(--bg-color);
+        border-top: .1rem solid rgba(0, 0, 0, .2);
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+        text-align: center;
+    }
+
+    .home {
+        flex-direction: column-reverse;
+        justify-content: center;
+        gap: 2rem;
+    }
+
+    .home-img .img-box {
+        width: 35rem;
+        height: 35rem;
+    }
+
+    .resume-container,
+    .portfolio-container,
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+
+    .resume-container {
+        gap: 3rem;
+    }
+
+    .portfolio-container .portfolio-box:first-child {
+        order: 1;
+    }
+
+    .contact-box .field-box {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+    nav a {
+        display: block;
+        margin: 4rem 0;
+    }
+
+    nav {
+        display: none;
+    }
+
+    nav.active {
+        display: block;
+    }
+
+
+    #menu-icon {
+        display: block;
+        height: 50%;
+        margin-right: 20px;
+    }
+
+    .home-img .img-box {
+        width: 30rem;
+        height: 30rem;
+    }
+
+    .contact-box .field-box {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media screen and (max-width: 450px) {
+    html {
+        font-size: 50%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .home-detail,
+    .resume-box h2,
+    .resume-box .heading,
+    .resume-box .desc,
+    .resume-detail.about .resume-item {
+        text-align: center;
+    }
+
+    .home-detail .btn-sci {
+        flex-direction: column-reverse;
+    }
+
+    .home-detail .btn-sci .sci {
+        margin-left: 0;
+        margin-bottom: 2rem;
+    }
+
+    .contact-box form {
+        padding: 2.5rem 3rem 3.5rem;
+    }
+
+    .contact-box h2 {
+        font-size: 3.5rem;
+    }
+}

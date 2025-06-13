@@ -1,29 +1,37 @@
 
-let darkmode = localStorage.getItem('darkmode');
+let lightmode = localStorage.getItem('lightmode');
 const themeSwitch = document.getElementById('theme-switch');
 
-const enableDarkMode = () => {
-    document.body.classList.add('darkmode');
-    localStorage.setItem('darkmode', 'active');
+const enableLightmode = () => {
+    document.body.classList.add('lightmode');
+    localStorage.setItem('lightmode', 'active');
 }
 
-const disableDarkMode = () => {
-    document.body.classList.remove('darkmode');
-    localStorage.setItem('darkmode', null);
+const disableLightmode = () => {
+    document.body.classList.remove('lightmode');
+    localStorage.setItem('lightmode', null);
 }
 
-if(document === "active") {enableDarkMode();}
+if(document === "active") {enableLightmode();}
 
 themeSwitch.addEventListener("click", () => {
-    darkmode = localStorage.getItem('darkmode');
-    darkmode !== "active" ? enableDarkMode() : disableDarkMode();
+    lightmode = localStorage.getItem('lightmode');
+    lightmode !== "active" ? enableLightmode() : disableLightmode();
 })
 
 const navLinks = document.querySelectorAll('header nav a');
 const logoLink = document.querySelector('.logo');
 const sections = document.querySelectorAll('section');
+const menuIcon = document.querySelector('#menu-icon');
+const navbar = document.querySelector('header nav')
+
+menuIcon.addEventListener('click', () => {
+    menuIcon.classList.toggle('bx-x');
+    navbar.classList.toggle('active');
+})
 
 const activePage = () => {
+    const barsBox = document.querySelector('.bars-box');
     const header = document.querySelector('header');
 
     header.classList.remove('active');
@@ -35,9 +43,17 @@ const activePage = () => {
         link.classList.remove('active');
     });
 
+    barsBox.classList.remove('active');
+    setTimeout(() => {
+        barsBox.classList.add('active');
+    }, 1100);
+
     sections.forEach(section => {
         section.classList.remove('active');
     });
+
+    menuIcon.classList.remove('bx-x');
+    navbar.classList.remove('active');
 }
 
 navLinks.forEach((link, idx) => {
@@ -61,7 +77,7 @@ logoLink.addEventListener('click', () => {
         navLinks[0].classList.add('active');
 
         setTimeout(() => {
-            sections[0].classList.add('active');
+            sections[idx].classList.add('active');
         }, 1100);
     }
 });
